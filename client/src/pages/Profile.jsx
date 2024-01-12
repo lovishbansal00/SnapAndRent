@@ -22,7 +22,7 @@ export default function Profile() {
   const [filePrec, setFilePrec] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
-  const [updateSuccess, setUpadateSucccess] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   useEffect(() => {
     if (file) {
@@ -30,7 +30,7 @@ export default function Profile() {
     }
   }, [file]);
 
-  const handleFileUpload = async (file) => {
+  const handleFileUpload = (file) => {
     const storage = getStorage(app);
     const fileName = new Date().getTime() + file.name;
     const storageRef = ref(storage, fileName);
@@ -39,9 +39,9 @@ export default function Profile() {
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        const progrses =
+        const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setFilePrec(Math.round(progrses));
+        setFilePrec(Math.round(progress));
       },
       (error) => {
         console.log(error);
@@ -75,8 +75,8 @@ export default function Profile() {
         dispatch(updateUserFailure(data.message));
         return;
       }
-      dispatch(updateUserSuccess(data.user));
-      setUpadateSucccess(true);
+      dispatch(updateUserSuccess(data));
+      setUpdateSuccess(true);
     } catch (error) {
       dispatch(updateUserFailure(error.message));
     }
@@ -102,7 +102,7 @@ export default function Profile() {
         <p className="text-sm self-center">
           {fileUploadError ? (
             <span className="text-red-700 ">
-              Error Image Upload(image must be lass than 2 mb)
+              Error Image Upload(image must be less than 2 mb)
             </span>
           ) : filePrec > 0 && filePrec < 100 ? (
             <span className="text-slate-700">{`Uploading ${filePrec}%`}</span>

@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
+import listingRouter from './routes/listing.route.js';
 
 
 const app = express();
@@ -21,6 +22,7 @@ mongoose.connect(process.env.mongo_url).then(() => {
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/listing", listingRouter);
 
 
 app.use((err, req, res, next) => {
@@ -35,4 +37,4 @@ app.use((err, req, res, next) => {
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
-})
+})  

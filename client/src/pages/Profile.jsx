@@ -133,6 +133,7 @@ export default function Profile() {
         return;
       }
       setUserListings(data);
+      // console.log(userListings);
     } catch (error) {
       setShowListingsError(true);
     }
@@ -248,7 +249,7 @@ export default function Profile() {
           <h1 className="text-center mt-7 text-2xl font-semiboldl">
             Your Listings
           </h1>
-          {userListings.map((listing) => {
+          {userListings.map((listing) => (
             <div
               key={listing._id}
               className="border rounded-lg p-3 flex justify-between items-center gap-4"
@@ -273,12 +274,12 @@ export default function Profile() {
                 >
                   Delete
                 </button>
-                <Link to={`update-listing/${listing._id}`}>
+                <Link to={`/update-listing/${listing._id}`}>
                   <button className="text-green-700 uppercase">Edit</button>
                 </Link>
               </div>
-            </div>;
-          })}
+            </div>
+          ))}
         </div>
       )}
     </div>

@@ -146,9 +146,9 @@ export default function CreateListing() {
     e.preventDefault();
     try {
       if (formData.imageUrls.length < 1)
-        return setError("Please upload at least one image");
+        return setError("You must upload at least one image");
       if (+formData.regularPrice < +formData.discountPrice)
-        return setError("Discounted price must be lower than regular price");
+        return setError("Discount price must be lower than regular price");
 
       setLoading(true);
       setError(false);
@@ -234,7 +234,7 @@ export default function CreateListing() {
                 onChange={handleChange}
                 checked={formData.parking}
               />
-              <span>Parking</span>
+              <span>Parking Spot</span>
             </div>
             <div className="flex gap-2">
               <input
@@ -296,7 +296,9 @@ export default function CreateListing() {
               />
               <div className="flex flex-col items-center">
                 <p>Regular Price</p>
-                <span className="text-xs">(Rs / Month)</span>
+                {formData.type === "rent" && (
+                  <span className="text-xs">(Rs / Month)</span>
+                )}
               </div>
             </div>
             {formData.offer && (
@@ -311,8 +313,10 @@ export default function CreateListing() {
                   value={formData.discountPrice}
                 />
                 <div className="flex flex-col items-center">
-                  <p>Discounted Price</p>
-                  <span className="text-xs">(Rs / Month)</span>
+                  <p>Discounted price</p>
+                  {formData.type === "rent" && (
+                    <span className="text-xs">(Rs / Month)</span>
+                  )}
                 </div>
               </div>
             )}
@@ -370,7 +374,7 @@ export default function CreateListing() {
             disabled={loading || uploading}
             className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
           >
-            {loading ? "Creating..." : "Update Listing"}
+            {loading ? "Updating..." : "Update Listing"}
           </button>
           {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>

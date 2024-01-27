@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -18,6 +19,10 @@ export default function Contact({ listing }) {
     fetchOwner();
   }, [listing.userRef]);
 
+  const onChange = (e) => {
+    setMessage(e.target.value);
+  };
+
   return (
     <>
       {owner && (
@@ -31,9 +36,9 @@ export default function Contact({ listing }) {
             id="message"
             rows="2"
             value={message}
-            onClick={onChange}
+            onChange={onChange}
             placeholder="Enter your message here..."
-            className="w-full p-3 border rounded-lg"
+            className="w-full border p-3 rounded-lg"
           ></textarea>
           <Link
             to={`mailto:${owner.email}?subject=Regarding ${listing.name}&body=${message}`}

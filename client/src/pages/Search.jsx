@@ -72,7 +72,7 @@ export default function Search() {
       });
     }
 
-    if (e.targe.id === "searchTerm") {
+    if (e.target.id === "searchTerm") {
       setSidebarData({
         ...sidebarData,
         searchTerm: e.target.value,
@@ -112,13 +112,13 @@ export default function Search() {
     urlParams.set("offer", sidebarData.offer);
     urlParams.set("sort", sidebarData.sort);
     urlParams.set("order", sidebarData.order);
-    const searcahQuery = urlParams.toString();
-    navigate(`/search?${searcahQuery}`);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
   };
 
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="p-7 border-b-2 md:border-r-2 md:mid-h-screen">
+      <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen">
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           <div className="flex items-center gap-2">
             <label className="whitespace-nowrap font-semibold">
@@ -126,9 +126,9 @@ export default function Search() {
             </label>
             <input
               type="text"
-              id="searchterm"
+              id="searchTerm"
               placeholder="Search..."
-              className="borde rounded-lg p-3 w-full"
+              className="border rounded-lg p-3 w-full"
               value={sidebarData.searchTerm}
               onChange={handleChange}
             />
@@ -143,7 +143,7 @@ export default function Search() {
                 onChange={handleChange}
                 checked={sidebarData.type === "all"}
               />
-              <span>Rent & Sell</span>
+              <span>Rent & Sale</span>
             </div>
             <div className="flex gap-2">
               <input

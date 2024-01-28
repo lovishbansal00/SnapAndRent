@@ -9,16 +9,16 @@ export default function ListingCard({ listing }) {
         <img
           src={
             listing.imageUrls[0] ||
-            "https://img.freepik.com/free-photo/hand-presenting-model-house-home-loan-campaign_53876-104970.jpg"
+            "https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/Sales_Blog/real-estate-business-compressor.jpg?width=595&height=400&name=real-estate-business-compressor.jpg"
           }
           alt="listing cover"
-          className="h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transtition-scale duration-300"
+          className="h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300"
         />
-        <div className="p-3 flex flex-col gap-2 w-full ">
-          <p className="text-lg font-semibold text-slate-700 truncate ">
+        <div className="p-3 flex flex-col gap-2 w-full">
+          <p className="text-lg font-semibold text-slate-700 truncate">
             {listing.name}
           </p>
-          <div className="flex items-center gap-1 ">
+          <div className="flex items-center gap-1">
             <MdLocationOn className="h-4 w-4 text-green-700" />
             <p className="text-sm text-gray-600 truncate w-full">
               {listing.address}
@@ -30,8 +30,8 @@ export default function ListingCard({ listing }) {
           <p className="text-slate-500 mt-2 font-semibold">
             Rs{" "}
             {listing.offer
-              ? listing.discountPrice.toLocaleString("en-us")
-              : listing.regularPrice.toLocaleString("en-us")}
+              ? listing.discountPrice.toLocaleString("en-US")
+              : listing.regularPrice.toLocaleString("en-US")}
             {listing.type === "rent" && " / Month"}
           </p>
           <div className="text-slate-700 flex gap-4">

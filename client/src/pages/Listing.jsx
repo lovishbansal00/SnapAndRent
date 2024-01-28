@@ -13,7 +13,7 @@ import {
   FaParking,
   FaShare,
 } from "react-icons/fa";
-import Contact from "../components/Contact";
+import Contact from "../components/Contact.jsx";
 
 export default function Listing() {
   SwiperCore.use([Navigation]);
@@ -23,7 +23,7 @@ export default function Listing() {
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [contact, setContact] = useState(false);
-  const { currentUser } = useSelector((state) => state.user.currentUser);
+  const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchListings = async () => {

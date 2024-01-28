@@ -162,6 +162,7 @@ export default function CreateListing() {
       const data = await res.json();
       setLoading(false);
       if (data.success === false) setError(data.message);
+      console.log(data);
       navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
@@ -370,6 +371,7 @@ export default function CreateListing() {
                 </button>
               </div>
             ))}
+
           <button
             disabled={loading || uploading}
             className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"

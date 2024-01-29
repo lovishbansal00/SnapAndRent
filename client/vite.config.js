@@ -7,9 +7,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: import.meta.env.MODE === 'production' ? 'https://snap-and-rent.vercel.app/' : 'http://localhost:3000',
+        target: 'https://localhost:3000',
+        // target: import.meta.env.MODE === 'production' ? 'https://snap-and-rent.vercel.app/' : 'http://localhost:3000',
         secure: false,
-        changeOrigin: true,
       },
     },
   },

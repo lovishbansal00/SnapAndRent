@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ListingCard from "../components/ListingCard.jsx";
 
@@ -54,8 +54,9 @@ export default function Search() {
       const searchQuery = urlParams.toString();
       const res = await fetch(`/api/listing/get?${searchQuery}`);
       const data = await res.json();
-      if (data.length > 8) setShowMore(true);
-      else {
+      if (data.length > 8) {
+        setShowMore(true);
+      } else {
         setShowMore(false);
       }
       setListings(data);
@@ -72,10 +73,7 @@ export default function Search() {
       e.target.id === "rent" ||
       e.target.id === "sale"
     ) {
-      setSidebarData({
-        ...sidebarData,
-        type: e.target.id,
-      });
+      setSidebarData({ ...sidebarData, type: e.target.id });
     }
 
     if (e.target.id === "searchTerm") {
@@ -238,7 +236,7 @@ export default function Search() {
       </div>
       <div className="flex-1">
         <h1 className="text-3xl font-semibold border-b p-3 text-slate-700 mt-5">
-          Listing Results
+          Listing Results:
         </h1>
         <div className="p-7 flex flex-wrap gap-4">
           {!loading && listings.length === 0 && (

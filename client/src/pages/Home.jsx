@@ -4,14 +4,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
 import "swiper/css/bundle";
-import ListingCard from "../components/ListingCard";
+import ListingCard from "../components/ListingCard.jsx";
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
   const [saleListings, setSaleListings] = useState([]);
   const [rentListings, setRentListings] = useState([]);
   SwiperCore.use([Navigation]);
-  console.log(saleListings);
 
   useEffect(() => {
     const fetchOfferListings = async () => {
@@ -52,9 +51,9 @@ export default function Home() {
   return (
     <div>
       {/* top */}
-      <div className="flex flex-col gap-6 py-28 px-3 max-w-6xl mx-auto">
+      <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto">
         <h1 className="text-slate-700 font-bold text-3xl lg:text-6xl">
-          Find your next<span className="text-slate-500"> perfect</span>
+          Find your next <span className="text-slate-500">perfect</span>
           <br />
           place with ease
         </h1>
@@ -68,7 +67,7 @@ export default function Home() {
           to={"/search"}
           className="text-xs sm:text-sm text-blue-800 font-bold hover:underline"
         >
-          Lets get started
+          Let&apos;s get started...
         </Link>
       </div>
 
@@ -126,7 +125,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="flex flex-wrap gap-4 ">
-              {offerListings.map((listing) => (
+              {rentListings.map((listing) => (
                 <ListingCard listing={listing} key={listing._id} />
               ))}
             </div>
@@ -145,8 +144,8 @@ export default function Home() {
                 Show more places for sale
               </Link>
             </div>
-            <div className="flex flex-wrap gap-4 ">
-              {offerListings.map((listing) => (
+            <div className="flex flex-wrap gap-4">
+              {saleListings.map((listing) => (
                 <ListingCard listing={listing} key={listing._id} />
               ))}
             </div>

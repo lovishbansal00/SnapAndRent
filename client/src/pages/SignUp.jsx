@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
 
-export default function Home() {
+export default function SignUp() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -43,9 +43,9 @@ export default function Home() {
   };
 
   return (
-    <div className="p-3 max-w-lg mx-auto ">
+    <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 ">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
           placeholder="Create your unique username"
@@ -62,7 +62,7 @@ export default function Home() {
         />
         <input
           type="password"
-          placeholder="Create a password"
+          placeholder="Create your password"
           className="border p-3 rounded-lg"
           id="password"
           onChange={handleChange}
@@ -71,7 +71,7 @@ export default function Home() {
           disabled={loading}
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? "Loading....." : "Sign up"}
+          {loading ? "Loading..." : "Sign Up"}
         </button>
         <OAuth />
       </form>

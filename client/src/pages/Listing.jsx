@@ -17,12 +17,12 @@ import Contact from "../components/Contact.jsx";
 
 export default function Listing() {
   SwiperCore.use([Navigation]);
-  const params = useParams();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [contact, setContact] = useState(false);
+  const params = useParams();
   const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -110,25 +110,25 @@ export default function Listing() {
               <span className="font-semibold text-black">Description - </span>
               {listing.description}
             </p>
-            <ul className="text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6 ">
+            <ul className="text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6">
               <li className="flex items-center gap-1 whitespace-nowrap ">
-                <FaBed className="text-lg " />
+                <FaBed className="text-lg" />
                 {listing.bedrooms > 1
                   ? `${listing.bedrooms} Beds`
                   : `${listing.bedrooms} Bed`}
               </li>
               <li className="flex items-center gap-1 whitespace-nowrap ">
-                <FaBath className="text-lg " />
+                <FaBath className="text-lg" />
                 {listing.bathrooms > 1
                   ? `${listing.bathrooms} Baths`
                   : `${listing.bathrooms} Bath`}
               </li>
               <li className="flex items-center gap-1 whitespace-nowrap ">
-                <FaParking className="text-lg " />
-                {listing.parking ? "Parking Spot" : "No Pakring"}
+                <FaParking className="text-lg" />
+                {listing.parking ? "Parking Spot" : "No Parking"}
               </li>
               <li className="flex items-center gap-1 whitespace-nowrap ">
-                <FaChair className="text-lg " />
+                <FaChair className="text-lg" />
                 {listing.furnished ? "Furnished" : "Unfurnished"}
               </li>
             </ul>

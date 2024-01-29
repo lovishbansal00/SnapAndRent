@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import {
+  getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
-  getDownloadURL,
 } from "firebase/storage";
 import { app } from "../firebase";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function CreateListing() {
+  const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const params = useParams();
-  const { currentUser } = useSelector((state) => state.user);
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     imageUrls: [],
@@ -161,8 +161,9 @@ export default function CreateListing() {
       });
       const data = await res.json();
       setLoading(false);
-      if (data.success === false) setError(data.message);
-      console.log(data);
+      if (data.success === false) {
+        setError(data.message);
+      }
       navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
@@ -183,7 +184,6 @@ export default function CreateListing() {
             className="border p-3 rounded-lg"
             id="name"
             maxLength="62"
-            // minLength="10"
             required
             onChange={handleChange}
             value={formData.name}
@@ -332,12 +332,12 @@ export default function CreateListing() {
           </p>
           <div className="flex gap-4">
             <input
+              onChange={(e) => setFiles(e.target.files)}
               className="p-3 border border-gray-300 rounded w-full"
               type="file"
               id="images"
               accept="image/*"
               multiple
-              onChange={(e) => setFiles(e.target.files)}
             />
             <button
               type="button"
@@ -354,8 +354,8 @@ export default function CreateListing() {
           {formData.imageUrls.length > 0 &&
             formData.imageUrls.map((url, index) => (
               <div
-                className="flex justify-between p-3 border items-center"
                 key={url}
+                className="flex justify-between p-3 border items-center"
               >
                 <img
                   src={url}

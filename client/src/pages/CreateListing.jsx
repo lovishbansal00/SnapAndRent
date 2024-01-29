@@ -1,17 +1,17 @@
 import { useState } from "react";
 import {
+  getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
-  getDownloadURL,
 } from "firebase/storage";
 import { app } from "../firebase";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateListing() {
-  const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     imageUrls: [],
@@ -132,7 +132,7 @@ export default function CreateListing() {
       if (formData.imageUrls.length < 1)
         return setError("Please upload at least one image");
       if (+formData.regularPrice < +formData.discountPrice)
-        return setError("Discounted price must be lower than regular price");
+        return setError("Discount price must be lower than regular price");
 
       setLoading(true);
       setError(false);
@@ -166,7 +166,6 @@ export default function CreateListing() {
             className="border p-3 rounded-lg"
             id="name"
             maxLength="62"
-            // minLength="10"
             required
             onChange={handleChange}
             value={formData.name}
@@ -218,7 +217,7 @@ export default function CreateListing() {
                 onChange={handleChange}
                 checked={formData.parking}
               />
-              <span>Parking</span>
+              <span>Parking Spot</span>
             </div>
             <div className="flex gap-2">
               <input
@@ -311,12 +310,12 @@ export default function CreateListing() {
           </p>
           <div className="flex gap-4">
             <input
+              onChange={(e) => setFiles(e.target.files)}
               className="p-3 border border-gray-300 rounded w-full"
               type="file"
               id="images"
               accept="image/*"
               multiple
-              onChange={(e) => setFiles(e.target.files)}
             />
             <button
               type="button"
@@ -333,8 +332,8 @@ export default function CreateListing() {
           {formData.imageUrls.length > 0 &&
             formData.imageUrls.map((url, index) => (
               <div
-                className="flex justify-between p-3 border items-center"
                 key={url}
+                className="flex justify-between p-3 border items-center"
               >
                 <img
                   src={url}

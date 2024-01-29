@@ -39,7 +39,7 @@ export default function Header() {
         >
           <input
             type="text"
-            placeholder="Search...."
+            placeholder="Search..."
             className="bg-transparent focus:outline-none w-24 sm:w-64"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -62,9 +62,9 @@ export default function Header() {
           <Link to="/profile">
             {currentUser ? (
               <img
-                src={currentUser.avatar}
-                alt="profile photo"
                 className="rounded-full h-7 w-7 object-cover"
+                src={currentUser.avatar}
+                alt="profile"
               />
             ) : (
               <li className="text-slate-700 hover:underline">Log in</li>

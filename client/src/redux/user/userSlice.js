@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     currentUser: null,
@@ -57,7 +57,7 @@ const userSlice = createSlice({
         logOutUserFailure: (state, action) => {
             state.error = action.payload;
             state.loading = false;
-        }
+        },
     },
 });
 
@@ -65,12 +65,12 @@ export const {
     loginStart,
     loginSuccess,
     loginFailure,
-    updateUserStart,
     updateUserFailure,
     updateUserSuccess,
-    deleteUserStart,
-    deleteUserSuccess,
+    updateUserStart,
     deleteUserFailure,
+    deleteUserSuccess,
+    deleteUserStart,
     logOutUserStart,
     logOutUserSuccess,
     logOutUserFailure
